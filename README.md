@@ -47,8 +47,8 @@ docker compose up -d
 ```
 
 **3. Move into the Docker container**
+
 **redis**
-     
 ```bash
 docker exec -it <container-name> redis-cli
 ```
@@ -68,3 +68,4 @@ docker exec -it <container-name> redis-cli -c -p <sentinel-port>
 - **If a password is set, it is set to 1111.**
 - **For Redis, you can change the file with the `.conf` extension, and for Prometheus, you can change the `prometheus.yml` file.**
 - **For ports, default values are used, but if multiple Redis instances are started, the default port (6379) is incremented by 1. For Sentinel, it is set to start from 5000.**
+- **Here, Redis latest version is specified for all, but you can change the Docker Compose image to use a specific version if desired.**
