@@ -17,6 +17,7 @@
 
 - **1 master, 2 slave, 3 sentinel (3 redis, 3 sentinel)**
 - **첫 번째 노드의 네트워크를 이용하도록 한 예제입니다. (같은 네트워크 이므로 localhost로 통신 가능)**
+- **DNS를 사용할 수 있도록 하였으나 실제로 띄워보면 DNS 관련 에러가 나기에 부득이하게 같은 네트워크로 묶었습니다.**
 
 ## 4. [redis-cluster](https://github.com/GreenTea9227/redis-practice/tree/main/redis-cluster)
 
@@ -65,6 +66,7 @@ docker exec -it <container-name> redis-cli -c -p <sentinel-port>
 # 참고
 - **비밀번호가 설정되어 있는 경우 1111로 되어 있습니다.**
 - **redis의 경우 `.conf` 확장자를 가진 파일을 변경하면 되며 프로메테우스의 경우 `prometheus.yml` 파일을 변경하시면 됩니다.**
+- **port의 경우 기본 값을 이용하였으나 여러개의 redis를 띄운 경우에는 기본포트(6379)부터 +1씩 하였습니다. sentinel의 경우에는 5000부터 시작하도록 설정하였습니다.**
 
 
 
