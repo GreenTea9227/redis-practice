@@ -63,6 +63,7 @@ docker exec -it <continaer-name> redis-cli -c -p <sentinel-port>
 ---
 
 # 참고
+- **비밀번호가 설정되어 있는 경우 1111로 되어 있습니다.**
 - **redis의 경우 `.conf` 확장자를 가진 파일을 변경하면 되며 프로메테우스의 경우 `prometheus.yml` 파일을 변경하시면 됩니다.**
 
 
