@@ -47,17 +47,17 @@ docker compose up -d
 **- redis**
      
 ```bash
-docker exec -it <continaer-name> redis-cli
+docker exec -it <container-name> redis-cli
 ```
 
 **- redis (sentinel)**
 ```bash
-docker exec -it <continaer-name>  redis-cli -p <sentinel-port>
+docker exec -it <container-name>  redis-cli -p <sentinel-port>
 ```
 
 **- redis (cluster)**
 ```bash
-docker exec -it <continaer-name> redis-cli -c -p <sentinel-port>
+docker exec -it <container-name> redis-cli -c -p <sentinel-port>
 ```
 
 ---
