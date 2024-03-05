@@ -1,6 +1,6 @@
 # Redis With Docker
 
-[Korean Version](ko/README_ko.md)
+[Korean Version](README_ko.md)
 
 **For those who want to study Redis but find it difficult to start.**
 ---
