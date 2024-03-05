@@ -1,0 +1,102 @@
+version: "3.9"
+services:
+  node1:
+    container_name: node1
+    image: redis
+    volumes:
+      - ./conf1:/usr/local/etc/redis/
+    command: redis-server /usr/local/etc/redis/redis.conf
+    ports:
+      - "6379:6379"
+      - "6380:6380"
+      - "6381:6381"
+      - "6382:6382"
+      - "6383:6383"
+      - "6384:6384"
+      - "3000:3000"
+      - "9090:9090"
+      - "9100:9100"
+      - "9121:9121"
+
+  node2:
+    network_mode: "service:node1"
+    container_name: node2
+    image: redis
+    volumes:
+      - ./conf2:/usr/local/etc/redis/
+    command: redis-server /usr/local/etc/redis/redis.conf
+
+  node3:
+    network_mode: "service:node1"
+    container_name: node3
+    image: redis
+    volumes:
+      - ./conf3:/usr/local/etc/redis/
+    command: redis-server /usr/local/etc/redis/redis.conf
+
+  node4:
+    network_mode: "service:node1"
+    container_name: node4
+    image: redis
+    volumes:
+      - ./conf4:/usr/local/etc/redis/
+    command: redis-server /usr/local/etc/redis/redis.conf
+
+  node5:
+    network_mode: "service:node1"
+    container_name: node5
+    image: redis
+    volumes:
+      - ./conf5:/usr/local/etc/redis/
+    command: redis-server /usr/local/etc/redis/redis.conf
+
+  node6:
+    network_mode: "service:node1"
+    container_name: node6
+    image: redis
+    volumes:
+      - ./conf6:/usr/local/etc/redis/
+    command: redis-server /usr/local/etc/redis/redis.conf
+
+  redis-cluster-entry:
+    network_mode: "service:node1"
+    image: redis
+    container_name: redis-cluster
+    command: redis-cli --cluster create 127.0.0.1:6379 127.0.0.1:6380 127.0.0.1:6381 127.0.0.1:6382 127.0.0.1:6383 127.0.0.1:6384 --cluster-replicas 1 --cluster-yes
+    depends_on:
+      - node1
+      - node2
+      - node3
+      - node4
+      - node5
+      - node6
+
+  grafana:
+    network_mode: "service:node1"
+    container_name: grafana
+    image: grafana/grafana
+    
+  prometheus:
+    network_mode: "service:node1"
+    container_name: prometheus
+    image: prom/prometheus
+
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+
+  node-exporter:
+    network_mode: "service:node1"
+    container_name: node-exporter
+    image: prom/node-exporter
+
+
+  redis-exporter:
+    network_mode: "service:node1"
+    container_name: redis-exporter
+    image: oliver006/redis_exporter
+
+    environment:
+      REDIS_ADDR: "localhost:6379"
+      REDIS_USER: null

@@ -1,0 +1,10 @@
+version: '3.8'
+services:
+  node1:
+    container_name: single
+    image: redis
+    volumes:
+      - ./redis:/usr/local/etc/redis/
+    ports:
+      - "6379:6379"
+    command: redis-server /usr/local/etc/redis/redis.conf
